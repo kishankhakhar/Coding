@@ -1,6 +1,10 @@
+//The following code illustrates the construction of a simple binary tree
+
+
 #include<stdio.h>
 #include<stdlib.h>
 
+// a structure indicating the basic structure of every node of the tree.
 struct node 
 {
 	int data;
@@ -8,15 +12,15 @@ struct node
 	struct node *right;
 };
 
-/* newNode() allocates a new node with the given data and NULL left and 
-right pointers. */
+//newNode() method allocates a new node with the given data and NULL left and right pointers.
 struct node* newNode(int data)
 {
-// Allocate memory for new node 
+// Allocating memory to the new node 
 struct node* node = (struct node*)malloc(sizeof(struct node));
 
 // Assign data to this node
 node->data = data;
+//printing the data to ensure the proper implementation i.e. just for verifying purposes.
 printf("\nnew node created with data %d",data);
 
 // Initialize left and right children of node as NULL
@@ -25,34 +29,35 @@ node->right = NULL;
 return(node);
 }
 
-
+//driver program
 int main()
 {
-/*create root*/
 
-struct node *temp;
+struct node *temp; //a temp node for traversing along the tree
+
+// Now create root node with data 1
 struct node *root = newNode(1); 
 
 /* following is the tree after above statement 
 
-		1
-	/ \
-	NULL NULL 
+		 1
+		/ \
+	      NULL NULL 
 */
 
-
+//creating new nodes to left and right of root 
 root->left	 = newNode(2);
 root->right	 = newNode(3);
 
 /* 2 and 3 become left and right children of 1
-		1
-		/ \
-		2	 3
-	/ \ / \
-	NULL NULL NULL NULL
+		  1
+		/   \
+		2    3
+	       / \  / \
+	      N  N  N N   // here N stands for NULL 
 */
 
-//pointing temp to left child of root
+//Make temp point to the left child of root
 temp = root->left;
 
 //creating a new node as left child of temp i.e. left of left of root
@@ -60,13 +65,16 @@ temp->left = newNode(4);
 
 /* 4 becomes left child of 2
 		1
-	/	 \
-	2		 3
-	/ \	 / \
-4 NULL NULL NULL
-/ \
-NULL NULL
+	    /	    \
+	   2	     3
+	  / \	    / \
+         4   N     N   N
+	/ \
+       N   N
 */
 
 return 0;
 }
+
+
+//Hope this makes clear on how to create a binary tree :)
